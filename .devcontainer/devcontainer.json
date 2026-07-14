@@ -1,0 +1,18 @@
+{
+  "name": "poly-maker",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "postCreateCommand": "pip install -e .[dev] && find . -mindepth 2 -name package.json -not -path '*/node_modules/*' -print0 | while IFS= read -r -d '' pkg; do (cd \"$(dirname \"$pkg\")\" && npm install); done",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
